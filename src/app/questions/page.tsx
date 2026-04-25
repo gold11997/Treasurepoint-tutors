@@ -44,9 +44,9 @@ export default async function QuestionsBank() {
                   <span>• {q.difficulty}</span>
                 </div>
               </div>
-              <button className="btn btn-primary" style={{ padding: '0.5rem 1rem' }}>
+              <Link href={`/questions/${q.id}`} className="btn btn-primary" style={{ padding: '0.5rem 1rem' }}>
                 View Solution
-              </button>
+              </Link>
             </div>
           ))
         ) : (

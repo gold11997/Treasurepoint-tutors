@@ -1,0 +1,69 @@
+.aboutHero {
+  padding: 6rem 1rem;
+  background: var(--surface);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.aboutTitle {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.aboutSubtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contentSection {
+  padding: 4rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 3rem;
+}
+
+.card h2 {
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.card p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.credentialsList {
+  list-style: none;
+  padding: 0;
+}
+
+.credentialsList li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.credentialsList li svg {
+  color: var(--primary);
+  margin-right: 1rem;
+  flex-shrink: 0;
+}

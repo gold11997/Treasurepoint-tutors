@@ -7,12 +7,17 @@ import { createClient } from '@/utils/supabase/server'
 export async function login(formData: FormData) {
   const supabase = createClient()
 
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
+  const email = formData.get('email') as string
+  const password = formData.get('password') as string
+
+  if (!email || !password) {
+    redirect('/login?error=' + encodeURIComponent('Email and password are required'))
   }
 
-  const { error } = await supabase.auth.signInWithPassword(data)
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  })
 
   if (error) {
     redirect('/login?error=' + encodeURIComponent(error.message))
@@ -25,17 +30,23 @@ export async function login(formData: FormData) {
 export async function signup(formData: FormData) {
   const supabase = createClient()
 
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-    options: {
-      data: {
-        full_name: formData.get('full_name') as string,
-      }
-    }
+  const email = formData.get('email') as string
+  const password = formData.get('password') as string
+  const full_name = formData.get('full_name') as string
+
+  if (!email || !password) {
+    redirect('/register?error=' + encodeURIComponent('Email and password are required'))
   }
 
-  const { error } = await supabase.auth.signUp(data)
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name,
+      }
+    }
+  })
 
   if (error) {
     redirect('/register?error=' + encodeURIComponent(error.message))

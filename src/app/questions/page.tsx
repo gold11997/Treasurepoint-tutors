@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "../dashboard.module.css";
 import { createClient } from "@/utils/supabase/server";
 import { logout } from "../auth/actions";
 
@@ -11,15 +10,15 @@ export default async function QuestionsBank() {
     .order('created_at', { ascending: false });
 
   return (
-    <div className={`container animate-fade-in ${styles.dashboardContainer}`}>
-      <header className={styles.dashboardHeader}>
+    <div className="container animate-fade-in">
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
         <h1>Questions Bank</h1>
-        <nav className={styles.navLinks}>
-          <Link href="/dashboard" className={styles.navLink}>Overview</Link>
-          <Link href="/questions" className={`${styles.navLink} ${styles.active}`}>Questions Bank</Link>
-          <Link href="/community" className={styles.navLink}>Community</Link>
+        <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+          <Link href="/dashboard" className="nav-link">Overview</Link>
+          <Link href="/questions" style={{ fontWeight: '600', color: 'var(--primary-color)' }}>Questions Bank</Link>
+          <Link href="/community" className="nav-link">Community</Link>
           <form action={logout}>
-            <button type="submit" className={styles.navLink} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'inherit' }}>
+            <button type="submit" className="nav-link" style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'inherit' }}>
               Log out
             </button>
           </form>
@@ -29,17 +28,18 @@ export default async function QuestionsBank() {
       <input 
         type="text" 
         placeholder="Search for topics, standards (e.g., IFRS 9), or keywords..." 
-        className={styles.searchBar} 
+        className="glass"
+        style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', marginBottom: '2rem', background: 'var(--glass-bg)', color: 'var(--text-color)' }}
       />
 
-      <div className={styles.questionList}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {questions && questions.length > 0 ? (
           questions.map((q) => (
-            <div key={q.id} className={styles.questionItem}>
+            <div key={q.id} className="card glass" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.5rem' }}>
               <div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{q.title}</h3>
-                <div className={styles.questionMeta}>
-                  <span className={styles.tag}>{q.subject}</span>
+                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{q.title}</h3>
+                <div style={{ display: 'flex', gap: '1rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                  <span style={{ color: 'var(--primary-color)', fontWeight: '600' }}>{q.subject}</span>
                   <span>{q.diet_year}</span>
                   <span>• {q.difficulty}</span>
                 </div>
@@ -50,9 +50,9 @@ export default async function QuestionsBank() {
             </div>
           ))
         ) : (
-          <div className={styles.card} style={{ textAlign: 'center', padding: '4rem' }}>
-            <h3 className={styles.cardTitle}>No questions found</h3>
-            <p className={styles.cardDescription}>
+          <div className="card glass" style={{ textAlign: 'center', padding: '4rem' }}>
+            <h2>No questions found</h2>
+            <p style={{ color: 'var(--text-muted)' }}>
               Once you add questions to your Supabase database, they will appear here automatically.
             </p>
           </div>
